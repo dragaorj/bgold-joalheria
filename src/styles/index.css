@@ -2260,6 +2260,24 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
     font-size: 1.35rem;
   }
 
+  /* sections after the film: phone-sized spacing, even rhythm between them */
+  .art,
+  .creations,
+  .clients {
+    padding-top: 4.5rem;
+    padding-bottom: 3.5rem;
+  }
+  .touch {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+  .clients__head {
+    margin-bottom: 2.5rem;
+  }
+  .contact__inner {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
   .art__grid {
     display: block;
   }
