@@ -309,6 +309,7 @@ export function CinematicFilm({ ready, revealed, menu, onStart, onTop, onLoadPro
 
         <DraftRule ref={rule} onJump={jump} labels={f.rule} navLabel={f.chapters} />
         </div>
+        <div className="edge edge--hint" aria-hidden="true" />
         <div className="scroll-hint">
           <span className="scroll-hint__mouse" aria-hidden="true">
             <span className="scroll-hint__wheel" />

@@ -137,6 +137,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
   overflow-x: clip;
   transition: background-color 0.5s var(--ease-out), color 0.5s var(--ease-out);
 }
@@ -525,6 +526,12 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   border-bottom: 1px solid var(--hair);
   transition: opacity 0.45s var(--ease-out);
 }
+html.is-cover {
+  scrollbar-width: none;
+}
+html.is-cover::-webkit-scrollbar {
+  display: none;
+}
 html[data-section] .site-nav::before {
   opacity: 1;
 }
@@ -781,7 +788,9 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   position: sticky;
   top: 0;
   height: 100vh;
-  height: 100lvh;
+  /* the visible screen: follows the phone's address bar, so the frame (and the
+     ring at its centre) always matches what the visitor actually sees */
+  height: 100dvh;
   overflow: hidden;
   background: #e9e6e0;
   color: var(--f-ink);
@@ -1088,6 +1097,18 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 .tint--tl {
   background: linear-gradient(to bottom right, color-mix(in srgb, var(--f-col) 86%, transparent) 0%, color-mix(in srgb, var(--f-col) 60%, transparent) 24%, color-mix(in srgb, var(--f-col) 18%, transparent) 44%, color-mix(in srgb, var(--f-col) 0%, transparent) 60%);
+}
+
+/* soft band behind the cover's invitation; it leaves with the hint */
+.edge--hint {
+  inset: auto 0 0 0;
+  height: 30vh;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--f-col) 96%, transparent) 0%, color-mix(in srgb, var(--f-col) 92%, transparent) 35%, color-mix(in srgb, var(--f-col) 55%, transparent) 66%, color-mix(in srgb, var(--f-col) 0%, transparent) 100%);
+  opacity: 1;
+  transition: opacity 0.6s var(--ease-out);
+}
+.film-stage[data-started="true"] .edge--hint {
+  opacity: 0;
 }
 
 /* the hero cue: a phrase and a subtle mouse whose wheel keeps rolling */
@@ -2151,14 +2172,20 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   }
   .tint--bl,
   .tint--bottom {
-    background: linear-gradient(0deg, color-mix(in srgb, var(--f-col) 90%, transparent) 0%, color-mix(in srgb, var(--f-col) 62%, transparent) 24%, color-mix(in srgb, var(--f-col) 16%, transparent) 42%, color-mix(in srgb, var(--f-col) 0%, transparent) 52%);
+    background: linear-gradient(0deg, color-mix(in srgb, var(--f-col) 94%, transparent) 0%, color-mix(in srgb, var(--f-col) 88%, transparent) 22%, color-mix(in srgb, var(--f-col) 62%, transparent) 34%, color-mix(in srgb, var(--f-col) 26%, transparent) 44%, color-mix(in srgb, var(--f-col) 0%, transparent) 56%);
   }
   .tint--br,
   .tint--tl {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--f-col) 90%, transparent) 0%, color-mix(in srgb, var(--f-col) 62%, transparent) 24%, color-mix(in srgb, var(--f-col) 16%, transparent) 42%, color-mix(in srgb, var(--f-col) 0%, transparent) 52%);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--f-col) 94%, transparent) 0%, color-mix(in srgb, var(--f-col) 88%, transparent) 22%, color-mix(in srgb, var(--f-col) 62%, transparent) 34%, color-mix(in srgb, var(--f-col) 26%, transparent) 44%, color-mix(in srgb, var(--f-col) 0%, transparent) 56%);
   }
   .tint--sides {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--f-col) 85%, transparent) 0%, color-mix(in srgb, var(--f-col) 0%, transparent) 34%, color-mix(in srgb, var(--f-col) 0%, transparent) 62%, color-mix(in srgb, var(--f-col) 88%, transparent) 100%);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--f-col) 94%, transparent) 0%, color-mix(in srgb, var(--f-col) 84%, transparent) 18%, color-mix(in srgb, var(--f-col) 40%, transparent) 30%, color-mix(in srgb, var(--f-col) 0%, transparent) 40%),
+      linear-gradient(0deg, color-mix(in srgb, var(--f-col) 94%, transparent) 0%, color-mix(in srgb, var(--f-col) 86%, transparent) 20%, color-mix(in srgb, var(--f-col) 44%, transparent) 32%, color-mix(in srgb, var(--f-col) 0%, transparent) 44%);
+  }
+  /* the second paragraph sits left on phones, like its title */
+  .ch-inicio .ch-body {
+    margin-left: 0;
   }
   .ch-body {
     font-size: 0.95rem;

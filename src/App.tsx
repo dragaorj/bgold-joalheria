@@ -28,6 +28,11 @@ export default function App() {
   const onStart = useCallback(() => setStage("all"), []);
   const onTop = useCallback(() => setStage("cover"), []);
 
+  // the cover has no scrollbar either
+  useEffect(() => {
+    document.documentElement.classList.toggle("is-cover", stage === "cover");
+  }, [stage]);
+
   useEffect(() => {
     if (!ready || stage !== "cover") return;
     const showMenu = () => setStage((s) => (s === "cover" ? "menu" : s));
