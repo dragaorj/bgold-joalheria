@@ -1506,7 +1506,6 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   background: var(--champagne);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.25s linear;
 }
 
 /* ==========================================================================

@@ -92,27 +92,36 @@ export function ReelPlayer({
     else v.pause();
   }, [active, visible, paused, near]);
 
-  // crossfade between clips, and reset the marks of the others
+  // crossfade between clips
   useEffect(() => {
     vids.current.forEach((v, i) => {
       if (!v) return;
       gsap.to(v, { autoAlpha: i === active ? 1 : 0, duration: prefersReducedMotion() ? 0 : 0.9, ease: "power2.out" });
     });
+  }, [active]);
+
+  // progress marks work like stories: every clip before the current one is
+  // full, every clip after it is empty, and only the current one fills,
+  // smoothly, from its own playback position
+  useEffect(() => {
+    if (!progress || single) return;
     bars.current.forEach((b, i) => {
       if (b && i !== active) b.style.transform = i < active ? "scaleX(1)" : "scaleX(0)";
     });
-  }, [active]);
+    let raf = 0;
+    const tick = () => {
+      const v = vids.current[active];
+      const bar = bars.current[active];
+      if (v && bar && v.duration) bar.style.transform = `scaleX(${Math.min(1, v.currentTime / v.duration)})`;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, progress, single]);
 
   const onEnded = (i: number) => {
     if (single || i !== active) return;
     setActive((i + 1) % reels.length);
-  };
-
-  const onTime = (i: number) => {
-    const v = vids.current[i];
-    const bar = bars.current[i];
-    if (!v || !bar || !v.duration) return;
-    bar.style.transform = `scaleX(${v.currentTime / v.duration})`;
   };
 
   return (
@@ -143,7 +152,6 @@ export function ReelPlayer({
               visibility: i === active ? "visible" : "hidden",
             }}
             onEnded={() => onEnded(i)}
-            onTimeUpdate={() => onTime(i)}
           />
         ))}
       </div>
