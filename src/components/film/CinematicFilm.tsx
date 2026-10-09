@@ -11,11 +11,16 @@ import { buildChapterTimeline } from "./FilmTimeline";
 
 interface Props {
   ready: boolean;
+  /** the visitor has started scrolling: overlays, ruler and copy come in */
+  revealed: boolean;
+  /** the menu is on screen (after a click or the first scroll) */
+  menu: boolean;
+  onStart: () => void;
   onLoadProgress: (r: number) => void;
   onLoaded: () => void;
 }
 
-export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
+export function CinematicFilm({ ready, revealed, menu, onStart, onLoadProgress, onLoaded }: Props) {
   const { t, lang } = useI18n();
   const f = t.film;
   const section = useRef<HTMLElement>(null);
@@ -31,8 +36,8 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
   const layoutKey = useLayoutKey();
 
   // Keep the latest callbacks without re-running the loader.
-  const cb = useRef({ onLoadProgress, onLoaded });
-  cb.current = { onLoadProgress, onLoaded };
+  const cb = useRef({ onLoadProgress, onLoaded, onStart });
+  cb.current = { onLoadProgress, onLoaded, onStart };
 
   /* ---------- video: load, verify seeking, fall back if needed ---------- */
   useEffect(() => {
@@ -99,6 +104,7 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
         if (document.documentElement.dataset.filmTone !== topTone) document.documentElement.dataset.filmTone = topTone;
         const started = p > 0.004 ? "true" : "false";
         if (root.dataset.started !== started) root.dataset.started = started;
+        if (started === "true") cb.current.onStart();
         let idx = 0;
         for (let i = 0; i < CHAPTERS.length; i++) if (p >= CHAPTERS[i].start) idx = i;
         if (idx !== activeChapter) {
@@ -133,27 +139,30 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
     };
   }, [lang, layoutKey]);
 
-  /* ---------- opening: the first headline settles in once loaded ---------- */
+  /* ---------- cover: only "Role para baixo" until the visitor acts ---------- */
   useEffect(() => {
     if (!ready || !stage.current) return;
+    const cue = gsap.fromTo(stage.current.querySelector(".scroll-hint"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 1, delay: 0.3 });
+    return () => {
+      cue.progress(1).kill();
+    };
+  }, [ready]);
+
+  /* ---------- once scrolling starts, the first headline settles in ---------- */
+  useEffect(() => {
+    if (!revealed || !stage.current) return;
     if (progress.current > 0.06) return;
     const reduced = prefersReducedMotion();
     const lines = stage.current.querySelectorAll(".ch-intro h1 .sl");
     const tw = gsap.fromTo(
       lines,
       { yPercent: reduced ? 0 : 108, opacity: reduced ? 0 : 1 },
-      { yPercent: 0, opacity: 1, duration: reduced ? 0.6 : 1.5, stagger: 0.11, ease: "expo.out", delay: 0.15 },
-    );
-    const cue = gsap.fromTo(
-      stage.current.querySelector(".scroll-hint"),
-      { autoAlpha: 0 },
-      { autoAlpha: 1, duration: 1, delay: 1.1 },
+      { yPercent: 0, opacity: 1, duration: reduced ? 0.6 : 1.4, stagger: 0.11, ease: "expo.out", delay: 0.1 },
     );
     return () => {
       tw.progress(1).kill();
-      cue.progress(1).kill();
     };
-  }, [ready, lang]);
+  }, [revealed, lang]);
 
   const jump = (p: number) => {
     const sec = section.current;
@@ -178,6 +187,11 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
         </div>
         <p className="sr-only">{f.description}</p>
 
+        {/* everything over the film waits for the first scroll: until then the
+            visitor sees only the drawing and "Role para baixo" */}
+        {/* the soft fade behind the menu comes in with the menu */}
+        <div className={`edge edge--top${menu ? " is-on" : ""}`} aria-hidden="true" />
+        <div className={`film-ui${revealed ? " is-on" : ""}`}>
         {/* edge tints in the theme colour, one per text position, faded with its chapter */}
         {/* washes out the drawing's annotations beside the ring while the opening copy reads */}
         <div className="tint tint--notes" aria-hidden="true" />
@@ -188,7 +202,6 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
         <div className="tint tint--tl" aria-hidden="true" />
         <div className="film-dim" aria-hidden="true" />
         {/* permanent soft fades where the menu and the ruler sit */}
-        <div className="edge edge--top" aria-hidden="true" />
         <div className="edge edge--right" aria-hidden="true" />
 
         {/* 01 Introdução */}
@@ -284,6 +297,7 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
         </div>
 
         <DraftRule ref={rule} onJump={jump} labels={f.rule} navLabel={f.chapters} />
+        </div>
         <div className="scroll-hint">
           <span className="scroll-hint__mouse" aria-hidden="true">
             <span className="scroll-hint__wheel" />

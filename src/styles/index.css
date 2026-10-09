@@ -1018,6 +1018,25 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   visibility: hidden;
 }
 
+/* everything over the film (fades, copy, ruler) waits for the first scroll */
+.film-ui {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.9s var(--ease-out),
+    visibility 0s linear 0.9s;
+}
+.edge--top.is-on {
+  opacity: 1;
+}
+.film-ui.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.9s var(--ease-out);
+}
+
 /* permanent soft edges behind the menu (top) and the ruler (right) */
 .edge {
   position: absolute;
@@ -1025,6 +1044,8 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   pointer-events: none;
 }
 .edge--top {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out);
   inset: 0 0 auto 0;
   height: calc(var(--nav-h) + 14vh);
   background: linear-gradient(180deg, color-mix(in srgb, var(--f-top) 86%, transparent) 0%, color-mix(in srgb, var(--f-top) 55%, transparent) 40%, color-mix(in srgb, var(--f-top) 0%, transparent) 100%);
@@ -1046,7 +1067,8 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 /* both sides of the ring, full height; the ring itself stays clear */
 .tint--notes {
-  background: linear-gradient(90deg, color-mix(in srgb, var(--f-col) 86%, transparent) 0%, color-mix(in srgb, var(--f-col) 86%, transparent) 29%, color-mix(in srgb, var(--f-col) 0%, transparent) 34%, color-mix(in srgb, var(--f-col) 0%, transparent) 63%, color-mix(in srgb, var(--f-col) 86%, transparent) 68%, color-mix(in srgb, var(--f-col) 86%, transparent) 100%);
+  /* a long, eased ramp on each side so the fade never reads as a line */
+  background: linear-gradient(90deg, color-mix(in srgb, var(--f-col) 86%, transparent) 0%, color-mix(in srgb, var(--f-col) 86%, transparent) 16%, color-mix(in srgb, var(--f-col) 70%, transparent) 22%, color-mix(in srgb, var(--f-col) 45%, transparent) 27%, color-mix(in srgb, var(--f-col) 20%, transparent) 31%, color-mix(in srgb, var(--f-col) 6%, transparent) 34%, color-mix(in srgb, var(--f-col) 0%, transparent) 36%, color-mix(in srgb, var(--f-col) 0%, transparent) 61%, color-mix(in srgb, var(--f-col) 6%, transparent) 63%, color-mix(in srgb, var(--f-col) 20%, transparent) 66%, color-mix(in srgb, var(--f-col) 45%, transparent) 70%, color-mix(in srgb, var(--f-col) 70%, transparent) 75%, color-mix(in srgb, var(--f-col) 86%, transparent) 82%, color-mix(in srgb, var(--f-col) 86%, transparent) 100%);
 }
 .tint--bl {
   background:
@@ -1086,6 +1108,20 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 .scroll-hint__mouse,
 .scroll-hint__label {
   transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+/* on the cover the invitation blinks softly until the first scroll */
+.film-stage:not([data-started="true"]) .scroll-hint__mouse,
+.film-stage:not([data-started="true"]) .scroll-hint__label {
+  animation: blink 1.8s var(--ease-in-out) infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 .film-stage[data-started="true"] .scroll-hint__mouse,
 .film-stage[data-started="true"] .scroll-hint__label {
@@ -2275,7 +2311,9 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
    Reduced motion: fewer and gentler, not zero
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-btn {
+  .whatsapp-btn,
+  .film-stage .scroll-hint__mouse,
+  .film-stage .scroll-hint__label {
     animation: none;
   }
   .scroll-hint__wheel {

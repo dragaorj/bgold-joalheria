@@ -22,6 +22,21 @@ export default function App() {
   const [progress, setProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [ready, setReady] = useState(false);
+  // the opening is a cover: only "Role para baixo". A click or key brings the
+  // menu; the first scroll brings the menu, the ruler and the copy.
+  const [stage, setStage] = useState<"cover" | "menu" | "all">("cover");
+  const onStart = useCallback(() => setStage("all"), []);
+
+  useEffect(() => {
+    if (!ready || stage !== "cover") return;
+    const showMenu = () => setStage((s) => (s === "cover" ? "menu" : s));
+    window.addEventListener("pointerdown", showMenu);
+    window.addEventListener("keydown", showMenu);
+    return () => {
+      window.removeEventListener("pointerdown", showMenu);
+      window.removeEventListener("keydown", showMenu);
+    };
+  }, [ready, stage]);
   const after = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,9 +69,9 @@ export default function App() {
         {t.nav.skip}
       </a>
       <Loader progress={progress} done={loaded} onExit={onExit} />
-      <Nav ready={ready} />
+      <Nav ready={ready && stage !== "cover"} />
       <main>
-        <CinematicFilm ready={ready} onLoadProgress={setProgress} onLoaded={() => setLoaded(true)} />
+        <CinematicFilm ready={ready} revealed={stage === "all"} menu={stage !== "cover"} onStart={onStart} onLoadProgress={setProgress} onLoaded={() => setLoaded(true)} />
         <div ref={after}>
           <ArtOfBGold />
           <Creations />
