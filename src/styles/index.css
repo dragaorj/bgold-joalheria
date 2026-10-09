@@ -804,7 +804,12 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 .film-media {
   position: absolute;
-  inset: 0;
+  /* the footage keeps one fixed size (the screen without the phone's address
+     bar), so the frame never rescales when the bar collapses on the first scroll;
+     the stage still follows the visible screen and simply reveals a little more */
+  inset: 0 0 auto 0;
+  height: 100vh;
+  height: 100lvh;
   will-change: transform;
 }
 .film-frame {
