@@ -175,8 +175,7 @@ const pt: Dict = {
   },
   clients: {
     "title": [
-      "O que dizem sobre",
-      "a BGold Joalheria"
+      "O que dizem sobre nós?"
     ],
     "lead": "Cada aliança tem um casal por trás. Estas são algumas das histórias que passaram pela nossa bancada.",
     "exampleNote": "Depoimentos e imagens ilustrativos.",
@@ -340,8 +339,7 @@ const en: Dict = {
   },
   clients: {
     "title": [
-      "What people say about",
-      "BGold Joalheria"
+      "What do people say about us?"
     ],
     "lead": "Every ring has a couple behind it. These are some of the stories that passed through our bench.",
     "exampleNote": "Illustrative testimonials and images.",
@@ -505,8 +503,7 @@ const es: Dict = {
   },
   clients: {
     "title": [
-      "Lo que dicen sobre",
-      "BGold Joalheria"
+      "¿Qué dicen sobre nosotros?"
     ],
     "lead": "Cada alianza tiene una pareja detrás. Estas son algunas de las historias que pasaron por nuestro banco de trabajo.",
     "exampleNote": "Testimonios e imágenes ilustrativos.",
