@@ -1,0 +1,19 @@
+# dependencies and build output (Vercel reinstalls and rebuilds)
+node_modules/
+dist/
+*.tsbuildinfo
+
+# working folders: original 4K/Instagram footage and test frames.
+# The site only needs the optimised files in public/.
+source/
+lab/
+
+# local editor / tool settings
+.claude/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# environment files
+.env
+.env.*
