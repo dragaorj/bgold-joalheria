@@ -446,7 +446,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   }
 }
 
-/* WhatsApp: gold like the main action, floating gently above back-to-top */
+/* WhatsApp: a soft green with a white mark, floating gently above back-to-top */
 .whatsapp-btn {
   position: fixed;
   z-index: 46;
@@ -458,9 +458,9 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   height: 56px;
   margin-right: -4px;
   border-radius: 999px;
-  background: var(--champagne);
-  color: var(--charcoal);
-  box-shadow: 0 14px 30px -12px rgba(var(--shadow-rgb), 0.55);
+  background: #3fbf7f;
+  color: #ffffff;
+  box-shadow: 0 14px 30px -12px rgba(30, 110, 70, 0.55);
   animation: float 3.2s var(--ease-in-out) infinite;
   transition: background-color 0.2s var(--ease-out);
 }
@@ -475,7 +475,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 @media (hover: hover) and (pointer: fine) {
   .whatsapp-btn:hover {
-    background: #d9bf86;
+    background: #35ad70;
     animation-play-state: paused;
   }
 }
