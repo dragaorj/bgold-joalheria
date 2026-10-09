@@ -27,6 +27,8 @@
 
   --font-display: "Against", Georgia, serif;
   --radius: 18px;
+  /* the brand's small cut stone, used at the ends of the gold rules */
+  --diamond: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 18'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23fbf3dc'/><stop offset='.35' stop-color='%23ecd59a'/><stop offset='.65' stop-color='%23c6a667'/><stop offset='1' stop-color='%239c7b38'/></linearGradient></defs><path d='M5.2 1.5h9.6l4 4.2L10 16.5 1.2 5.7z' fill='url(%23g)' stroke='%237d6029' stroke-width='.8' stroke-linejoin='round'/><path d='M1.2 5.7h17.6M5.2 1.5 7.4 5.7 10 1.5l2.6 4.2 2.2-4.2M7.4 5.7 10 16.5l2.6-10.8' fill='none' stroke='%237d6029' stroke-width='.55' stroke-linejoin='round' stroke-linecap='round'/><path d='M6.2 2.4 7.4 4.6' stroke='%23fffaf0' stroke-width='.7' stroke-linecap='round' opacity='.9'/></svg>");
   --font-text: "Quicksand", system-ui, sans-serif;
 
   --gutter: clamp(1.25rem, 4.2vw, 4.5rem);
@@ -240,11 +242,11 @@ p {
 .cota {
   position: relative;
   display: block;
-  height: 11px;
+  height: 14px;
   transform-origin: left center;
   color: var(--accent);
   /* the hairline runs between the two stones */
-  background: linear-gradient(currentColor, currentColor) center / calc(100% - 14px) 1px no-repeat;
+  background: linear-gradient(currentColor, currentColor) center / calc(100% - 26px) 1px no-repeat;
 }
 /* a small cut stone at each end: gold facets with a light top edge */
 .cota::before,
@@ -252,21 +254,17 @@ p {
   content: "";
   position: absolute;
   top: 50%;
-  width: 7px;
-  height: 7px;
-  margin-top: -3.5px;
-  transform: rotate(45deg);
-  background:
-    linear-gradient(135deg, #fbf3dc 0%, #f1dda6 30%, var(--champagne) 52%, #9c7b38 100%);
-  box-shadow:
-    0 0 0 0.5px rgba(122, 94, 40, 0.55),
-    0 0 6px rgba(218, 178, 55, 0.35);
+  width: 14px;
+  height: 13px;
+  margin-top: -6.5px;
+  background: var(--diamond) center / contain no-repeat;
+  filter: drop-shadow(0 0 3px rgba(218, 178, 55, 0.35));
 }
 .cota::before {
-  left: 1px;
+  left: 0;
 }
 .cota::after {
-  right: 1px;
+  right: 0;
 }
 .cota--center {
   transform-origin: center;
@@ -1178,14 +1176,13 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 .draft-rule__cursor {
   position: absolute;
-  right: -5px;
+  right: -9px;
   top: calc(var(--p) * 100%);
-  width: 9px;
-  height: 9px;
-  margin-top: -4.5px;
-  border: 1px solid var(--gold);
-  background: var(--gold);
-  transform: rotate(45deg);
+  width: 18px;
+  height: 16px;
+  margin-top: -8px;
+  background: var(--diamond) center / contain no-repeat;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
 }
 .draft-rule__marks {
   position: absolute;
@@ -1968,18 +1965,17 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 .loader__cota {
   position: relative;
   width: 12rem;
-  height: 11px;
+  height: 14px;
 }
 .loader__cota::before,
 .loader__cota::after {
   content: "";
   position: absolute;
   top: 50%;
-  width: 7px;
-  height: 7px;
-  margin-top: -3.5px;
-  transform: rotate(45deg);
-  background: linear-gradient(135deg, #fbf3dc 0%, #f1dda6 30%, var(--champagne) 52%, #9c7b38 100%);
+  width: 14px;
+  height: 13px;
+  margin-top: -6.5px;
+  background: var(--diamond) center / contain no-repeat;
 }
 .loader__cota::before {
   left: 0;
@@ -1989,9 +1985,10 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 .loader__fill {
   position: absolute;
-  left: 9px;
-  right: 9px;
-  top: 5px;
+  left: 15px;
+  right: 15px;
+  top: 50%;
+  margin-top: -0.5px;
   height: 1px;
   background: var(--champagne);
   transform-origin: left;
