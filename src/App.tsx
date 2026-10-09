@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Nav } from "./components/Nav";
 import { Loader } from "./components/Loader";
-import { ScrollTop } from "./components/controls/ScrollTop";
-import { WhatsAppButton } from "./components/controls/WhatsAppButton";
+import { FloatingActions } from "./components/controls/FloatingActions";
 import { CinematicFilm } from "./components/film/CinematicFilm";
 import { ArtOfBGold } from "./components/sections/ArtOfBGold";
 import { Creations } from "./components/sections/Creations";
@@ -66,8 +65,7 @@ export default function App() {
           <Contact />
         </div>
       </main>
-      <WhatsAppButton />
-      <ScrollTop />
+      <FloatingActions />
       <div className="grain" aria-hidden="true" />
     </>
   );
