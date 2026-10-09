@@ -7,7 +7,7 @@ import { gsap, ScrollTrigger, SplitText, prefersReducedMotion } from "./scroll";
  *   data-reveal="words"  paragraph surfaces word by word
  *   data-reveal="row"    list row: name by lines, then its sentence by words
  *   data-reveal="fade"   opacity with a short rise
- *   data-reveal="cota"   dimension line draws itself (scaleX)
+ *   data-reveal="cota"   the stone slides along the ruler with the scroll
  *   data-reveal="clip"   media unmasks from the bottom, scrubbed by scroll
  *   data-parallax="-8"   gentle scrubbed drift in percent
  * Everything reverses when scrolling back up. The caller re-runs this when
@@ -88,8 +88,13 @@ export function initReveals(scope: HTMLElement) {
       );
     });
 
+    // the stone slides along the ruler as the line crosses the screen
     scope.querySelectorAll<HTMLElement>('[data-reveal="cota"]').forEach((el) => {
-      gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", scrollTrigger: enter(el, "top 90%") });
+      gsap.fromTo(
+        el,
+        { "--x": 0 },
+        { "--x": 1, ease: "none", scrollTrigger: { trigger: el, start: "top 92%", end: "top 30%", scrub: true } },
+      );
     });
 
     scope.querySelectorAll<HTMLElement>('[data-reveal="clip"]').forEach((el) => {

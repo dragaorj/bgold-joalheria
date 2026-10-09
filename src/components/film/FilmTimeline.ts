@@ -122,7 +122,7 @@ export function buildChapterTimeline(root: HTMLElement, reduced: boolean) {
   show(".ch-precisao", 0.495);
   const precLines = lines(".ch-precisao .prec-support");
   tl.fromTo(q(".prec-a"), { yPercent: 110 * d, opacity: reduced ? 0 : 1 }, { yPercent: 0, opacity: 1, duration: 0.035, ease: "power3.out" }, 0.5);
-  tl.fromTo(q(".ch-precisao .cota"), { scaleX: 0 }, { scaleX: 1, duration: 0.08, ease: "power2.inOut" }, 0.505);
+  tl.fromTo(q(".ch-precisao .cota"), { "--x": 0 }, { "--x": 1, duration: 0.1, ease: "none" }, 0.505);
   tl.to(q(".prec-a"), { yPercent: -110 * d, opacity: reduced ? 0 : 1, duration: 0.03, ease: "power2.in" }, 0.548);
   tl.fromTo(q(".prec-b"), { yPercent: 110 * d, opacity: reduced ? 0 : 1 }, { yPercent: 0, opacity: 1, duration: 0.035, ease: "power3.out" }, 0.556);
   rise(precLines, 0.568, 0.025, 0.005);
@@ -153,7 +153,7 @@ export function buildChapterTimeline(root: HTMLElement, reduced: boolean) {
     { clipPath: "inset(0% 0% 0% 0%)", y: 0, duration: 0.05, ease: "power3.inOut" },
     0.885,
   );
-  tl.fromTo(q(".ch-assinatura .cota"), { scaleX: 0 }, { scaleX: 1, duration: 0.05, ease: "power2.inOut" }, 0.905);
+  tl.fromTo(q(".ch-assinatura .cota"), { "--x": 0 }, { "--x": 1, duration: 0.09, ease: "none" }, 0.905);
   show(".sig-bottom", 0.91, 0.02);
   tl.fromTo(
     q(".ch-assinatura .sig-sub"),

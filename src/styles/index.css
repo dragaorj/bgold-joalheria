@@ -239,35 +239,33 @@ p {
 }
 
 /* the cota: a technical-drawing dimension line with end ticks */
+/* the gold rule: a small ruler (line + ticks, longer every fifth) with one
+   cut stone sliding along it. --x (0..1) is the stone's position. */
+@property --x {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
 .cota {
+  --x: 0;
   position: relative;
   display: block;
-  height: 14px;
-  transform-origin: left center;
+  height: 21px;
   color: var(--accent);
-  /* the hairline runs between the two stones */
-  background: linear-gradient(currentColor, currentColor) center / calc(100% - 26px) 1px no-repeat;
+  background:
+    linear-gradient(currentColor, currentColor) 0 13px / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 30px) 0 13px / 100% 7px no-repeat,
+    repeating-linear-gradient(90deg, color-mix(in srgb, currentColor 55%, transparent) 0 1px, transparent 1px 6px) 0 13px / 100% 4px no-repeat;
 }
-/* a small cut stone at each end: gold facets with a light top edge */
-.cota::before,
 .cota::after {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 0;
+  left: calc(var(--x) * (100% - 14px));
   width: 14px;
   height: 13px;
-  margin-top: -6.5px;
   background: var(--diamond) center / contain no-repeat;
-  filter: drop-shadow(0 0 3px rgba(218, 178, 55, 0.35));
-}
-.cota::before {
-  left: 0;
-}
-.cota::after {
-  right: 0;
-}
-.cota--center {
-  transform-origin: center;
+  filter: drop-shadow(0 1px 2px rgba(122, 94, 40, 0.35));
 }
 
 /* ==========================================================================
@@ -1278,7 +1276,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
 }
 .art__text .cota {
-  width: 7rem;
+  width: 12rem;
 }
 [data-word] {
   display: inline-block;
@@ -1334,8 +1332,10 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   grid-row: 2;
   width: 100%;
   margin-top: 0.9rem;
-  transform: scaleX(0);
-  transition: transform 0.7s var(--ease-out);
+  opacity: 0;
+  transition:
+    opacity 0.4s var(--ease-out),
+    --x 1.1s var(--ease-out);
 }
 .creation__text {
   grid-column: 2;
@@ -1359,7 +1359,8 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
 }
 .creation__link:focus-visible .cota--hover {
-  transform: scaleX(1);
+  opacity: 1;
+  --x: 1;
 }
 .creation__link:focus-visible .creation__more {
   opacity: 1;
@@ -1371,7 +1372,8 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
     color: var(--hover);
   }
   .creation__link:hover .cota--hover {
-    transform: scaleX(1);
+    opacity: 1;
+    --x: 1;
   }
   .creation__link:hover .creation__more {
     opacity: 1;
@@ -1444,7 +1446,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   margin-bottom: 2rem;
 }
 .touch__text .cota {
-  width: 7rem;
+  width: 12rem;
 }
 .touch__text p {
   margin: 1.5rem 0 0;
@@ -1474,7 +1476,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   margin-bottom: 2.2rem;
 }
 .contact__inner .cota {
-  width: 7rem;
+  width: 12rem;
 }
 .contact__text {
   margin: 1.5rem 0 2.5rem;
@@ -1971,36 +1973,17 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   opacity: 1;
 }
 .loader__cota {
-  position: relative;
   width: 12rem;
-  height: 14px;
-}
-.loader__cota::before,
-.loader__cota::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 14px;
-  height: 13px;
-  margin-top: -6.5px;
-  background: var(--diamond) center / contain no-repeat;
-}
-.loader__cota::before {
-  left: 0;
-}
-.loader__cota::after {
-  right: 0;
+  color: var(--accent);
 }
 .loader__fill {
   position: absolute;
-  left: 15px;
-  right: 15px;
-  top: 50%;
-  margin-top: -0.5px;
+  left: 0;
+  right: 0;
+  top: 13px;
   height: 1px;
   background: var(--champagne);
   transform-origin: left;
-  transition: transform 0.25s linear;
 }
 .loader__pct {
   margin: 0;
