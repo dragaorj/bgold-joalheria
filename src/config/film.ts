@@ -17,13 +17,14 @@
 
 export const VIDEO = {
   landscape: "/media/bgold-film-1080.mp4",
-  portrait: "/media/bgold-film-portrait.mp4",
+  // ?v= changes whenever the file is re-encoded, so phones never keep an old cut
+  portrait: "/media/bgold-film-portrait.mp4?v=2",
   posterLandscape: "/media/poster-landscape.jpg",
-  posterPortrait: "/media/poster-portrait.jpg",
+  posterPortrait: "/media/poster-portrait.jpg?v=2",
   /** fallback image sequence (12fps) if seeking proves unreliable */
   sequence: {
     landscape: (i: number) => `/media/seq-l/${String(i).padStart(3, "0")}.jpg`,
-    portrait: (i: number) => `/media/seq-p/${String(i).padStart(3, "0")}.jpg`,
+    portrait: (i: number) => `/media/seq-p/${String(i).padStart(3, "0")}.jpg?v=2`,
     count: 73,
   },
   fps: 24,
