@@ -1328,7 +1328,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 .art__media {
   justify-self: end;
-  width: min(100%, 26rem);
+  width: min(100%, 31rem);
 }
 .art__figure {
   position: relative;
