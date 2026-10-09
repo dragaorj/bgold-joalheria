@@ -1962,6 +1962,14 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 .loader__logo {
   --logo-h: 64px;
 }
+/* the loading screen always shows the gold logo */
+.loader .logo .logo__v:not(.logo__v--gold) {
+  display: none;
+}
+.loader .logo .logo__v--gold {
+  position: static;
+  opacity: 1;
+}
 .loader__cota {
   position: relative;
   width: 12rem;
