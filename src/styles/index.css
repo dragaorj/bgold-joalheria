@@ -1026,7 +1026,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   visibility: hidden;
 }
 
-/* everything over the film (fades, copy, ruler) waits for the first scroll */
+/* the copy and the ruler over the film wait for the first scroll */
 .film-ui {
   position: absolute;
   inset: 0;
@@ -1035,9 +1035,6 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   transition:
     opacity 0.9s var(--ease-out),
     visibility 0s linear 0.9s;
-}
-.edge--top.is-on {
-  opacity: 1;
 }
 .film-ui.is-on {
   opacity: 1;
@@ -1052,8 +1049,6 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   pointer-events: none;
 }
 .edge--top {
-  opacity: 0;
-  transition: opacity 0.9s var(--ease-out);
   inset: 0 0 auto 0;
   height: calc(var(--nav-h) + 14vh);
   background: linear-gradient(180deg, color-mix(in srgb, var(--f-top) 86%, transparent) 0%, color-mix(in srgb, var(--f-top) 55%, transparent) 40%, color-mix(in srgb, var(--f-top) 0%, transparent) 100%);

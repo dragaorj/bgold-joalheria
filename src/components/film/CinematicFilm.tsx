@@ -13,8 +13,6 @@ interface Props {
   ready: boolean;
   /** the visitor has started scrolling: overlays, ruler and copy come in */
   revealed: boolean;
-  /** the menu is on screen (after a click or the first scroll) */
-  menu: boolean;
   onStart: () => void;
   /** the visitor scrolled all the way back to the top */
   onTop: () => void;
@@ -22,7 +20,7 @@ interface Props {
   onLoaded: () => void;
 }
 
-export function CinematicFilm({ ready, revealed, menu, onStart, onTop, onLoadProgress, onLoaded }: Props) {
+export function CinematicFilm({ ready, revealed, onStart, onTop, onLoadProgress, onLoaded }: Props) {
   const { t, lang } = useI18n();
   const f = t.film;
   const section = useRef<HTMLElement>(null);
@@ -198,11 +196,11 @@ export function CinematicFilm({ ready, revealed, menu, onStart, onTop, onLoadPro
         </div>
         <p className="sr-only">{f.description}</p>
 
-        {/* everything over the film waits for the first scroll: until then the
-            visitor sees only the drawing and "Role para baixo" */}
-        {/* the soft fade behind the menu comes in with the menu */}
-        <div className={`edge edge--top${menu ? " is-on" : ""}`} aria-hidden="true" />
-        <div className={`film-ui${revealed ? " is-on" : ""}`}>
+        {/* the fades are on screen from the first frame, so nothing over the
+            film flashes in when the visitor starts to scroll */}
+        {/* permanent soft fades where the menu and the ruler sit */}
+        <div className="edge edge--top" aria-hidden="true" />
+        <div className="edge edge--right" aria-hidden="true" />
         {/* edge tints in the theme colour, one per text position, faded with its chapter */}
         {/* washes out the drawing's annotations beside the ring while the opening copy reads */}
         <div className="tint tint--notes" aria-hidden="true" />
@@ -212,8 +210,10 @@ export function CinematicFilm({ ready, revealed, menu, onStart, onTop, onLoadPro
         <div className="tint tint--bottom" aria-hidden="true" />
         <div className="tint tint--tl" aria-hidden="true" />
         <div className="film-dim" aria-hidden="true" />
-        {/* permanent soft fades where the menu and the ruler sit */}
-        <div className="edge edge--right" aria-hidden="true" />
+
+        {/* the copy and the ruler wait for the first scroll: until then the
+            visitor sees only the drawing and "Role para baixo" */}
+        <div className={`film-ui${revealed ? " is-on" : ""}`}>
 
         {/* 01 Introdução */}
         <div className="chapter ch-intro">

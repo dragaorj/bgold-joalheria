@@ -72,7 +72,7 @@ export default function App() {
       <Loader progress={progress} done={loaded} onExit={onExit} />
       <Nav ready={ready && stage !== "cover"} />
       <main>
-        <CinematicFilm ready={ready} revealed={stage === "all"} menu={stage !== "cover"} onStart={onStart} onTop={onTop} onLoadProgress={setProgress} onLoaded={() => setLoaded(true)} />
+        <CinematicFilm ready={ready} revealed={stage === "all"} onStart={onStart} onTop={onTop} onLoadProgress={setProgress} onLoaded={() => setLoaded(true)} />
         <div ref={after}>
           <ArtOfBGold />
           <Creations />
