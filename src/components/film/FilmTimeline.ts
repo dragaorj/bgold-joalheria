@@ -63,6 +63,9 @@ export function buildChapterTimeline(root: HTMLElement, reduced: boolean) {
   };
   gsap.set(q(".tint"), { opacity: 0 });
   gsap.set(q(".tint--bl"), { opacity: 1 });
+  // the annotations beside the ring stay washed out until "em cada detalhe." leaves
+  gsap.set(q(".tint--notes"), { opacity: 1 });
+  tint(".tint--notes", 0, 0.45, 0.04);
   tint(".tint--bl", 0, 0.075, 0.035);
   tint(".tint--br", 0.105, 0.27);
   tint(".tint--sides", 0.29, 0.455);

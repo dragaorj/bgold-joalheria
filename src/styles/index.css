@@ -1044,6 +1044,10 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   opacity: 0;
 
 }
+/* both sides of the ring, full height; the ring itself stays clear */
+.tint--notes {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--f-col) 86%, transparent) 0%, color-mix(in srgb, var(--f-col) 86%, transparent) 29%, color-mix(in srgb, var(--f-col) 0%, transparent) 34%, color-mix(in srgb, var(--f-col) 0%, transparent) 63%, color-mix(in srgb, var(--f-col) 86%, transparent) 68%, color-mix(in srgb, var(--f-col) 86%, transparent) 100%);
+}
 .tint--bl {
   background:
     linear-gradient(0deg, color-mix(in srgb, var(--f-col) 92%, transparent) 0%, color-mix(in srgb, var(--f-col) 78%, transparent) 22%, color-mix(in srgb, var(--f-col) 38%, transparent) 40%, color-mix(in srgb, var(--f-col) 0%, transparent) 56%),
@@ -2104,6 +2108,10 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   }
   .edge--right {
     width: 44px;
+  }
+  /* on phones the ring fills the frame; the top and bottom bands do this job */
+  .tint--notes {
+    display: none;
   }
   .tint--bl,
   .tint--bottom {

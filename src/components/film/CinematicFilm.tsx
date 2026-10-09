@@ -179,6 +179,8 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
         <p className="sr-only">{f.description}</p>
 
         {/* edge tints in the theme colour, one per text position, faded with its chapter */}
+        {/* washes out the drawing's annotations beside the ring while the opening copy reads */}
+        <div className="tint tint--notes" aria-hidden="true" />
         <div className="tint tint--bl" aria-hidden="true" />
         <div className="tint tint--br" aria-hidden="true" />
         <div className="tint tint--sides" aria-hidden="true" />
