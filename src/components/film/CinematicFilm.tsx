@@ -273,7 +273,6 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
               <img src="/brand/logo.svg" alt="" width={326} height={84} />
             </picture>
           </h2>
-          <span className="cota cota--center" aria-hidden="true" />
           <div className="sig-bottom">
             <p className="sig-sub">{f.signature.sub}</p>
             <a className="btn btn--gold sig-cta" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">

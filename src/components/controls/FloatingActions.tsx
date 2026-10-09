@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ArrowUp, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowUp } from "@phosphor-icons/react";
 import { WHATSAPP_URL } from "../../config/film";
 import { useI18n } from "../../i18n/I18nProvider";
 import { ScrollTrigger, gsap, prefersReducedMotion, scrollToTarget } from "../../lib/scroll";
@@ -43,7 +43,7 @@ export function FloatingActions() {
         aria-label={t.nav.whatsapp}
         title={t.nav.whatsapp}
       >
-        <WhatsappLogo size={28} weight="fill" aria-hidden="true" />
+        <img className="whatsapp-btn__icon" src="/brand/whatsapp.svg" alt="" width={28} height={28} />
       </a>
       <button
         type="button"

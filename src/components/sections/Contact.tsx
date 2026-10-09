@@ -66,7 +66,6 @@ export function Contact() {
               @bgold.joalheria
             </a>
           </div>
-          <span className="cota footer__cota" data-reveal="cota" aria-hidden="true" />
           <div className="footer__bottom">
             <p className="footer__line display">{t.footer.line}</p>
             <p className="footer__legal">

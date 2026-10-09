@@ -153,7 +153,6 @@ export function buildChapterTimeline(root: HTMLElement, reduced: boolean) {
     { clipPath: "inset(0% 0% 0% 0%)", y: 0, duration: 0.05, ease: "power3.inOut" },
     0.885,
   );
-  tl.fromTo(q(".ch-assinatura .cota"), { "--x": 0 }, { "--x": 1, duration: 0.09, ease: "none" }, 0.905);
   show(".sig-bottom", 0.91, 0.02);
   tl.fromTo(
     q(".ch-assinatura .sig-sub"),

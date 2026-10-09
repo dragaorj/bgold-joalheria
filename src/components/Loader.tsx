@@ -5,7 +5,7 @@ import { Logo } from "./brand/Logo";
 
 /**
  * The film is fetched in full before scrubbing starts. This screen measures
- * that load: a cut stone slides along a small ruler, then the screen lifts away.
+ * that load: a cut stone travels along a slim bar up to 100%, then the screen lifts away.
  */
 export function Loader({ progress, done, onExit }: { progress: number; done: boolean; onExit: () => void }) {
   const { t } = useI18n();
@@ -34,7 +34,7 @@ export function Loader({ progress, done, onExit }: { progress: number; done: boo
     <div ref={root} className="loader" role="status" aria-live="polite" aria-label={`${t.loader}, ${pct}%`}>
       <div className="loader__inner">
         <Logo className="loader__logo" />
-        <div className="cota loader__cota" aria-hidden="true" style={{ "--x": progress } as React.CSSProperties}>
+        <div className="loader__bar" aria-hidden="true" style={{ "--x": progress } as React.CSSProperties}>
           <span className="loader__fill" style={{ transform: `scaleX(${progress})` }} />
         </div>
         <p className="loader__pct" aria-hidden="true">
