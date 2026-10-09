@@ -122,7 +122,6 @@ export function buildChapterTimeline(root: HTMLElement, reduced: boolean) {
   show(".ch-precisao", 0.495);
   const precLines = lines(".ch-precisao .prec-support");
   tl.fromTo(q(".prec-a"), { yPercent: 110 * d, opacity: reduced ? 0 : 1 }, { yPercent: 0, opacity: 1, duration: 0.035, ease: "power3.out" }, 0.5);
-  tl.fromTo(q(".ch-precisao .cota"), { "--x": 0 }, { "--x": 1, duration: 0.1, ease: "none" }, 0.505);
   tl.to(q(".prec-a"), { yPercent: -110 * d, opacity: reduced ? 0 : 1, duration: 0.03, ease: "power2.in" }, 0.548);
   tl.fromTo(q(".prec-b"), { yPercent: 110 * d, opacity: reduced ? 0 : 1 }, { yPercent: 0, opacity: 1, duration: 0.035, ease: "power3.out" }, 0.556);
   rise(precLines, 0.568, 0.025, 0.005);

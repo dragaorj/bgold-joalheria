@@ -244,7 +244,6 @@ export function CinematicFilm({ ready, onLoadProgress, onLoaded }: Props) {
               <span className="prec-b">{f.precisao.b}</span>
             </span>
           </h2>
-          <span className="cota" aria-hidden="true" />
           <p key={`prec-${lang}`} className="ch-body prec-support">
             {f.precisao.support}
           </p>

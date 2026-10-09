@@ -942,16 +942,13 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 .prec-a,
 .prec-b {
   grid-area: 1 / 1;
+  justify-self: center;
   display: block;
   text-wrap: balance;
 }
-.ch-precisao .cota {
-  width: min(28rem, 60%);
-  margin: 1.1rem auto 1.1rem;
-}
 .ch-precisao .ch-body {
   max-width: 52ch;
-  margin: 0 auto;
+  margin: 1.2rem auto 0;
 }
 
 /* 05: top left, out of the dark */
@@ -2155,9 +2152,6 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   }
   .ch-precisao .ch-title {
     font-size: clamp(1.35rem, 5.8vw, 1.9rem);
-  }
-  .ch-precisao .cota {
-    margin: 0.7rem auto;
   }
 
   .ch-joia {
