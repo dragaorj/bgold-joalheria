@@ -16,8 +16,7 @@ const bump = () => {
 
 if (typeof window !== "undefined") {
   document.fonts?.ready.then(bump);
-  // watch the layout width (clientWidth), not the window: the scrollbar
-  // comes and goes with the cover, and text must be re-split when it does
+  // watch the layout width (clientWidth), not the window
   let width = document.documentElement.clientWidth;
   let t = 0;
   new ResizeObserver(() => {

@@ -117,7 +117,12 @@ html {
   font-synthesis: none;
   background: var(--bg);
   -webkit-text-size-adjust: 100%;
-  scrollbar-color: var(--gold) var(--bg);
+  /* no scrollbar anywhere: the layout width never changes, so the film
+     frame on load is exactly the frame the first scroll continues from */
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
 }
 html.lenis,
 html.lenis body {
@@ -525,12 +530,6 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   backdrop-filter: blur(14px) saturate(1.1);
   border-bottom: 1px solid var(--hair);
   transition: opacity 0.45s var(--ease-out);
-}
-html.is-cover {
-  scrollbar-width: none;
-}
-html.is-cover::-webkit-scrollbar {
-  display: none;
 }
 html[data-section] .site-nav::before {
   opacity: 1;
