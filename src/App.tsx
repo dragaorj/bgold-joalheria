@@ -22,7 +22,7 @@ export default function App() {
   const [progress, setProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [ready, setReady] = useState(false);
-  // the opening is a cover: only "Role para baixo". A click or key brings the
+  // the opening is a cover: only "Role a página". A click or key brings the
   // menu; the first scroll brings the menu, the ruler and the copy.
   const [stage, setStage] = useState<"cover" | "menu" | "all">("cover");
   const onStart = useCallback(() => setStage("all"), []);

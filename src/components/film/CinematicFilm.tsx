@@ -148,7 +148,7 @@ export function CinematicFilm({ ready, revealed, onStart, onTop, onLoadProgress,
     };
   }, [lang, layoutKey]);
 
-  /* ---------- cover: only "Role para baixo" until the visitor acts ---------- */
+  /* ---------- cover: only "Role a página" until the visitor acts ---------- */
   useEffect(() => {
     if (!ready || !stage.current) return;
     const cue = gsap.fromTo(stage.current.querySelector(".scroll-hint"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 1, delay: 0.3 });
@@ -212,7 +212,7 @@ export function CinematicFilm({ ready, revealed, onStart, onTop, onLoadProgress,
         <div className="film-dim" aria-hidden="true" />
 
         {/* the copy and the ruler wait for the first scroll: until then the
-            visitor sees only the drawing and "Role para baixo" */}
+            visitor sees only the drawing and "Role a página" */}
         <div className={`film-ui${revealed ? " is-on" : ""}`}>
 
         {/* 01 Introdução */}
