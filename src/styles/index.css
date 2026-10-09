@@ -911,9 +911,17 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   top: 24vh;
 }
 .arte-pos--right {
-  right: calc(var(--gutter) + 72px);
-  top: 52vh;
+  /* clear of the ruler and the floating WhatsApp / back-to-top buttons */
+  right: calc(var(--gutter) + 112px);
+  top: auto;
+  bottom: 5vh;
   text-align: right;
+}
+@media (min-width: 768px) {
+  /* the second half reads a step smaller, lower in the frame */
+  .arte-pos--right {
+    font-size: 0.64em;
+  }
 }
 .arte-support {
   position: absolute;
@@ -1040,7 +1048,9 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   background: linear-gradient(to top left, color-mix(in srgb, var(--f-col) 94%, transparent) 0%, color-mix(in srgb, var(--f-col) 82%, transparent) 26%, color-mix(in srgb, var(--f-col) 40%, transparent) 46%, color-mix(in srgb, var(--f-col) 0%, transparent) 64%);
 }
 .tint--sides {
-  background: linear-gradient(90deg, color-mix(in srgb, var(--f-col) 82%, transparent) 0%, color-mix(in srgb, var(--f-col) 45%, transparent) 20%, color-mix(in srgb, var(--f-col) 0%, transparent) 36%, color-mix(in srgb, var(--f-col) 0%, transparent) 64%, color-mix(in srgb, var(--f-col) 45%, transparent) 80%, color-mix(in srgb, var(--f-col) 82%, transparent) 100%);
+  background:
+    linear-gradient(to top left, color-mix(in srgb, var(--f-col) 92%, transparent) 0%, color-mix(in srgb, var(--f-col) 78%, transparent) 18%, color-mix(in srgb, var(--f-col) 30%, transparent) 34%, color-mix(in srgb, var(--f-col) 0%, transparent) 48%),
+    linear-gradient(90deg, color-mix(in srgb, var(--f-col) 82%, transparent) 0%, color-mix(in srgb, var(--f-col) 45%, transparent) 20%, color-mix(in srgb, var(--f-col) 0%, transparent) 36%, color-mix(in srgb, var(--f-col) 0%, transparent) 64%, color-mix(in srgb, var(--f-col) 45%, transparent) 80%, color-mix(in srgb, var(--f-col) 82%, transparent) 100%);
 }
 .tint--bottom {
   background: linear-gradient(0deg, color-mix(in srgb, var(--f-col) 88%, transparent) 0%, color-mix(in srgb, var(--f-col) 60%, transparent) 22%, color-mix(in srgb, var(--f-col) 18%, transparent) 40%, color-mix(in srgb, var(--f-col) 0%, transparent) 54%);
