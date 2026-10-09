@@ -177,7 +177,7 @@ const pt: Dict = {
       "a BGold Joalheria"
     ],
     "lead": "Cada aliança tem um casal por trás. Estas são algumas das histórias que passaram pela nossa bancada.",
-    "exampleNote": "Depoimentos de exemplo. Substitua por depoimentos reais de clientes antes de publicar; esta seção fica oculta no build de produção enquanto estiver marcada como exemplo.",
+    "exampleNote": "Depoimentos e imagens ilustrativos.",
     "rating": "5 de 5 estrelas",
     "items": [
       {
@@ -341,7 +341,7 @@ const en: Dict = {
       "BGold Joalheria"
     ],
     "lead": "Every ring has a couple behind it. These are some of the stories that passed through our bench.",
-    "exampleNote": "Example testimonials. Replace them with real customer reviews before publishing; this section stays hidden in the production build while it is marked as an example.",
+    "exampleNote": "Illustrative testimonials and images.",
     "rating": "5 out of 5 stars",
     "items": [
       {
@@ -505,7 +505,7 @@ const es: Dict = {
       "BGold Joalheria"
     ],
     "lead": "Cada alianza tiene una pareja detrás. Estas son algunas de las historias que pasaron por nuestro banco de trabajo.",
-    "exampleNote": "Testimonios de ejemplo. Reemplázalos por testimonios reales de clientes antes de publicar; esta sección queda oculta en el build de producción mientras esté marcada como ejemplo.",
+    "exampleNote": "Testimonios e imágenes ilustrativos.",
     "rating": "5 de 5 estrellas",
     "items": [
       {

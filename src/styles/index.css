@@ -1418,8 +1418,6 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 /* 05 · Contato */
 .contact {
   position: relative;
-  min-height: 80vh;
-  min-height: 80svh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -1430,7 +1428,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   width: 100%;
   max-width: 1680px;
   margin: 0 auto;
-  padding: clamp(8rem, 18vh, 12rem) var(--gutter) clamp(4rem, 10vh, 7rem);
+  padding: clamp(3rem, 7vh, 4.5rem) var(--gutter) clamp(4rem, 10vh, 7rem);
 }
 .contact__title {
   font-size: clamp(2.4rem, 4.8vw, 6.2rem);
@@ -1607,7 +1605,7 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
   position: relative;
   overflow: hidden;
   background: var(--bg);
-  padding: clamp(7rem, 16vh, 11rem) var(--gutter) clamp(7rem, 16vh, 11rem);
+  padding: clamp(7rem, 16vh, 11rem) var(--gutter) clamp(3rem, 7vh, 4.5rem);
   --card: #fbf9f4;
 }
 :root[data-theme="dark"] .clients {
@@ -1632,12 +1630,10 @@ html[data-film-tone="dark"]:not([data-section]) .site-nav:not([data-open="true"]
 }
 .clients__example {
   margin: 0;
-  max-width: 60ch;
-  padding: 0.6rem 1rem;
-  border: 1px dashed var(--accent);
-  border-radius: 10px;
   font-size: var(--t-micro);
-  color: var(--accent);
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  opacity: 0.8;
 }
 .clients__grid {
   display: grid;

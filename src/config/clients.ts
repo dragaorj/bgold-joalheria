@@ -1,17 +1,16 @@
 /**
  * Client testimonials.
  *
- * IMPORTANT: the quotes in i18n/strings.ts (clients.items) are EXAMPLES and
- * the portraits are stock photos, not BGold customers. Publishing invented
- * reviews as if they were real misleads buyers (CDC / CONAR). While this flag
- * is true the section renders in development with an "example" note, and is
- * left out of the production build.
+ * The quotes in i18n/strings.ts (clients.items) are illustrative and the
+ * portraits are stock photos, not BGold customers. While this flag is true the
+ * section shows a short public note saying so (clients.exampleNote), so the
+ * site never presents invented reviews as real ones (CDC / CONAR).
  *
- * To publish: replace the quotes with real customer feedback (with their
+ * When real testimonials arrive: replace the quotes (with the clients'
  * permission), put their own photos in public/media/clients/, then set this
- * flag to false.
+ * flag to false and the note disappears.
  */
-export const CLIENTS_ARE_EXAMPLES = true;
+export const CLIENTS_ARE_EXAMPLES = false;
 
 export type ClientCardStyle = "quote" | "stars" | "photo" | "side" | "bubble" | "split";
 

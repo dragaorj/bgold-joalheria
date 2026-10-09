@@ -16,7 +16,6 @@ export function Clients() {
   const { t, lang } = useI18n();
   const c = t.clients;
   const root = useRef<HTMLElement>(null);
-  const hidden = CLIENTS_ARE_EXAMPLES && import.meta.env.PROD;
 
   useEffect(() => {
     const el = root.current;
@@ -79,8 +78,6 @@ export function Clients() {
     return () => ctx.revert();
   }, [lang]);
 
-  if (hidden) return null;
-
   const cols: number[][] = Array.from({ length: COLUMNS }, () => []);
   c.items.forEach((_, i) => cols[i % COLUMNS].push(i));
 
@@ -98,7 +95,7 @@ export function Clients() {
           {c.lead}
         </p>
         {CLIENTS_ARE_EXAMPLES && (
-          <p className="clients__example" role="note">
+          <p className="clients__example">
             {c.exampleNote}
           </p>
         )}
