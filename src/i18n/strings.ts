@@ -37,6 +37,7 @@ export interface Dict {
     pause: string;
     play: string;
     scrollHint: string;
+    whatsapp: string;
   };
   loader: string;
   film: {
@@ -91,6 +92,7 @@ const pt: Dict = {
     pause: "Pausar vídeo",
     play: "Reproduzir vídeo",
     scrollHint: "Role para baixo",
+    whatsapp: "Fale com a BGold no WhatsApp",
   },
   loader: "Carregando o filme",
   film: {
@@ -255,6 +257,7 @@ const en: Dict = {
     pause: "Pause video",
     play: "Play video",
     scrollHint: "Scroll down",
+    whatsapp: "Talk to BGold on WhatsApp",
   },
   loader: "Loading the film",
   film: {
@@ -419,6 +422,7 @@ const es: Dict = {
     pause: "Pausar video",
     play: "Reproducir video",
     scrollHint: "Desliza hacia abajo",
+    whatsapp: "Habla con BGold por WhatsApp",
   },
   loader: "Cargando la película",
   film: {

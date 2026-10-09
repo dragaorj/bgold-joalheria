@@ -90,3 +90,7 @@ export const CHAPTERS: Chapter[] = [
 ];
 
 export const INSTAGRAM_URL = "https://www.instagram.com/bgold.joalheria/";
+
+/** WhatsApp with a ready-made greeting. */
+export const WHATSAPP_URL =
+  "https://api.whatsapp.com/send?phone=5519971316644&text=Ol%c3%a1!%f0%9f%91%8b%0A%0AEstava%20olhando%20o%20Instagram%20da%20BGold%20e%20gostei%20muito!%20Gostaria%20de%20um%20atendimento...";
