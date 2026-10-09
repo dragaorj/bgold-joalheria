@@ -16,11 +16,13 @@ interface Props {
   /** the menu is on screen (after a click or the first scroll) */
   menu: boolean;
   onStart: () => void;
+  /** the visitor scrolled all the way back to the top */
+  onTop: () => void;
   onLoadProgress: (r: number) => void;
   onLoaded: () => void;
 }
 
-export function CinematicFilm({ ready, revealed, menu, onStart, onLoadProgress, onLoaded }: Props) {
+export function CinematicFilm({ ready, revealed, menu, onStart, onTop, onLoadProgress, onLoaded }: Props) {
   const { t, lang } = useI18n();
   const f = t.film;
   const section = useRef<HTMLElement>(null);
@@ -36,8 +38,10 @@ export function CinematicFilm({ ready, revealed, menu, onStart, onLoadProgress, 
   const layoutKey = useLayoutKey();
 
   // Keep the latest callbacks without re-running the loader.
-  const cb = useRef({ onLoadProgress, onLoaded, onStart });
-  cb.current = { onLoadProgress, onLoaded, onStart };
+  const cb = useRef({ onLoadProgress, onLoaded, onStart, onTop });
+  cb.current = { onLoadProgress, onLoaded, onStart, onTop };
+  // survives timeline rebuilds, so a resize at the top never resets the cover
+  const startedRef = useRef(false);
 
   /* ---------- video: load, verify seeking, fall back if needed ---------- */
   useEffect(() => {
@@ -104,7 +108,14 @@ export function CinematicFilm({ ready, revealed, menu, onStart, onLoadProgress, 
         if (document.documentElement.dataset.filmTone !== topTone) document.documentElement.dataset.filmTone = topTone;
         const started = p > 0.004 ? "true" : "false";
         if (root.dataset.started !== started) root.dataset.started = started;
-        if (started === "true") cb.current.onStart();
+        // leaving the top reveals everything; coming back to it restores the cover
+        if (started === "true" && !startedRef.current) {
+          startedRef.current = true;
+          cb.current.onStart();
+        } else if (started === "false" && startedRef.current) {
+          startedRef.current = false;
+          cb.current.onTop();
+        }
         let idx = 0;
         for (let i = 0; i < CHAPTERS.length; i++) if (p >= CHAPTERS[i].start) idx = i;
         if (idx !== activeChapter) {

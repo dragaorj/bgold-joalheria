@@ -20,14 +20,15 @@ export function Nav({ ready }: { ready: boolean }) {
     { href: "#contato", label: t.nav.links.contato },
   ];
 
-  // discreet entrance after the loader
+  // discreet entrance when the visitor acts; it leaves again on the cover
   useEffect(() => {
-    if (!ready || !header.current) return;
-    gsap.fromTo(
-      header.current,
-      { autoAlpha: 0, y: prefersReducedMotion() ? 0 : -12 },
-      { autoAlpha: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 0.5 },
-    );
+    if (!header.current) return;
+    const reduced = prefersReducedMotion();
+    if (ready) {
+      gsap.to(header.current, { autoAlpha: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 0.15, overwrite: true });
+    } else {
+      gsap.to(header.current, { autoAlpha: 0, y: reduced ? 0 : -12, duration: 0.5, ease: "power2.in", overwrite: true });
+    }
   }, [ready]);
 
   // mobile menu: curtain from the top, links rise line by line

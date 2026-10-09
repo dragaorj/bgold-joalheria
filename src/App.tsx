@@ -26,6 +26,7 @@ export default function App() {
   // menu; the first scroll brings the menu, the ruler and the copy.
   const [stage, setStage] = useState<"cover" | "menu" | "all">("cover");
   const onStart = useCallback(() => setStage("all"), []);
+  const onTop = useCallback(() => setStage("cover"), []);
 
   useEffect(() => {
     if (!ready || stage !== "cover") return;
@@ -71,7 +72,7 @@ export default function App() {
       <Loader progress={progress} done={loaded} onExit={onExit} />
       <Nav ready={ready && stage !== "cover"} />
       <main>
-        <CinematicFilm ready={ready} revealed={stage === "all"} menu={stage !== "cover"} onStart={onStart} onLoadProgress={setProgress} onLoaded={() => setLoaded(true)} />
+        <CinematicFilm ready={ready} revealed={stage === "all"} menu={stage !== "cover"} onStart={onStart} onTop={onTop} onLoadProgress={setProgress} onLoaded={() => setLoaded(true)} />
         <div ref={after}>
           <ArtOfBGold />
           <Creations />
